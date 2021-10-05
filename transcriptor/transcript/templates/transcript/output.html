@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube Transcript Summarizer</title>
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+</head>
+<body style="margin : 0px; background-image: url({% static 'Image2.jpg' %}); transform: translate3d(0px, 0px, 0px);">
+<div class="container" style="color: white;">
+    <div class="row" align="center">
+        <div class="col-md-6"><h1>Youtube Transcript Summarizer</h1></div>
+    </div>
+    <div class="row" align="center">
+        <div class="col-md-6">
+                <h3 style="color: black;"> The Summarized Transcript is:</h3>
+                <h4 style="padding: 20px; text-align: justify"> {{ summ }}}</h4>
+        </div>
+    </div>
+</div>
+</body>
+</html>

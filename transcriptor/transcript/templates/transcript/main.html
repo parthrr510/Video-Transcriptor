@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube Transcript Summarizer</title>
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+</head>
+<body style="margin : 0px;">
+<div class="jss95" style="background-image: url({% static 'Image2.jpg' %}); transform: translate3d(0px, 0px, 0px);">
+    <div class="jss1">
+        <div class="MuiGrid-root jss98  MuiGrid-container">
+            <div class="MuiGrid-root jss99  MuiGrid-item">
+                <div class="jss2">
+                    <h1 class="jss3" align="center">Youtube Transcript Summarizer</h1>
+                </div>
+                <div class="jss2">
+                    <h2 style="text-align: center">
+                       Enter a URL
+                    </h2>
+                    <form action="/" method="post" class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    &emsp;&emsp;&emsp;&emsp;{{ form }}
+                    <br>
+                    <br>
+                    <button type="submit" class="button">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
