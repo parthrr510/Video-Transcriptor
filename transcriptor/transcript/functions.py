@@ -2,6 +2,7 @@ import os
 import pafy
 import speech_recognition as sr
 import moviepy.editor as mp
+from pytube import YouTube
 from youtube_transcript_api import YouTubeTranscriptApi
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
@@ -11,20 +12,22 @@ from heapq import nlargest
 def convertVideoToText(url):
     """ Converts Youtube Video to Text if Transcript from Youtube is not available"""
 
-    video = pafy.new(url)
-    bestaudio = video.getbestaudio()
-    path = "Audio." + bestaudio.extension
-    bestaudio.download(filepath=path)
-    clip = mp.AudioFileClip(path)
-    os.remove(path)
+    yt = YouTube(url)
+    video = yt.streams.filter(only_audio=True).first()
+    dest = "."
+    out_file = video.download(output_path=dest)
+    new_file = "Audio.mp3"
+    os.rename(out_file, new_file)
+    clip = mp.AudioFileClip(new_file)
+    os.remove(new_file)
     path = 'converted.wav'
     clip.write_audiofile(path)
     r = sr.Recognizer()
     audio = sr.AudioFile(path)
-    os.remove(path)
     with audio as source:
         audio_file = r.record(source)
-    result = r.recognize_google(audio_file)
+    result = r.recognize_google(audio_file, language='en-IN', show_all=True)
+    os.remove(path)
     return result
 
 
