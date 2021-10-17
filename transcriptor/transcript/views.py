@@ -7,8 +7,11 @@ def home(request):
         form = URLForm(request.POST)
         if form.is_valid():
             url = form.cleaned_data['url']
-            transcript = convertToTranscript(url)
-            summary = getSummarization(transcript)
+            transcript,bool = convertToTranscript(url)
+            if bool:
+                summary = getSummarization(transcript)
+            else:
+                summary = transcript
             context = {
                 'summ':summary
             }

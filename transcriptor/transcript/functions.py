@@ -31,7 +31,11 @@ def convertVideoToText(url):
 def convertToTranscript(url):
     """ Get Transcript from Youtube URL"""
 
-    video = pafy.new(url, ydl_opts={'nocheckcertificate': True})
+    try:
+        video = pafy.new(url, ydl_opts={'nocheckcertificate': True})
+    except:
+        message = "Please Enter Valid URL of Youtube Video"
+        return message,0
     id = video.videoid
     final_transcript = ""
     try:
@@ -42,7 +46,7 @@ def convertToTranscript(url):
     except:
         final_transcript = convertVideoToText(url)
 
-    return final_transcript
+    return final_transcript,1
 
 def getSummarization(text):
     stopwords = list(STOP_WORDS)
