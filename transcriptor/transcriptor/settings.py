@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+7asoh5(t3s^uy#(alf(fiwz5@fsaxgjoslot!49!lic)jax1('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DEBUG = env.bool("DEBUG", default=True)
+DEBUG = True
 
 ALLOWED_HOSTS = ['videotranscriptor.herokuapp.com']
 
